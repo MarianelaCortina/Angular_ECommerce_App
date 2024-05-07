@@ -1,0 +1,20 @@
+<!-- login.component.html -->
+<h2 >Iniciar Sesión</h2>
+<div >
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" autocomplete="off">
+      <mat-icon>mail</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <input matInput formControlName="password" autocomplete="off" type="password">
+    </mat-form-field>
+
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <button color="primary" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+    <button  type="button" >Cancelar</button>
+  </form>
+</div>

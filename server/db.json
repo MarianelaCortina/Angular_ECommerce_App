@@ -1,0 +1,200 @@
+{
+  "cart": [
+    {
+      "id": "1",
+      "type": "common",
+      "items": [
+        {
+          "productId": 1,
+          "name": "Arroz  Integral Molinos Ala 1 Kg",
+          "price": 3069,
+          "quantity": 2
+        },
+        {
+          "productId": 2,
+          "name": "Aceite girasol Pureza 900 Ml",
+          "price": 1856,
+          "quantity": 1
+        }
+      ],
+      "createdDate": "2024-04-30T08:00:00Z",
+      "total": 1000,
+      "status": "Activo"
+    },
+    {
+      "id": "2",
+      "type": "special",
+      "items": [
+        {
+          "productId": 3,
+          "name": "Sal fina Celusal 500 Gr",
+          "price": 1254,
+          "quantity": 1
+        }
+      ],
+      "createdDate": "2024-04-29T10:00:00Z",
+      "total": 1000,
+      "status": "Activo"
+    },
+    {
+      "id": 1714941352311,
+      "type": [
+        "common"
+      ],
+      "items": [],
+      "total": 0,
+      "status": "Activo",
+      "createdDate": "2024-05-05T20:35:52.311Z"
+    },
+    {
+      "id": 1714941355311,
+      "type": [
+        "common"
+      ],
+      "items": [],
+      "total": 0,
+      "status": "Activo",
+      "createdDate": "2024-05-05T20:35:55.311Z"
+    },
+    {
+      "id": 1714941357327,
+      "type": [
+        "common"
+      ],
+      "items": [],
+      "total": 0,
+      "status": "Activo",
+      "createdDate": "2024-05-05T20:35:57.327Z"
+    },
+    {
+      "id": 1714941399887,
+      "type": [
+        "common"
+      ],
+      "items": [],
+      "total": 0,
+      "status": "Activo",
+      "createdDate": "2024-05-05T20:36:39.887Z"
+    },
+    {
+      "id": 1714941436391,
+      "type": [
+        "common"
+      ],
+      "items": [],
+      "total": 0,
+      "status": "Activo",
+      "createdDate": "2024-05-05T20:37:16.391Z"
+    },
+    {
+      "id": 1714943847878,
+      "type": [
+        "common"
+      ],
+      "items": [],
+      "total": 0,
+      "status": "Activo",
+      "createdDate": "2024-05-05T21:17:27.878Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Arroz  Integral Molinos Ala 1 Kg",
+      "price": 3069,
+      "imageUrl": "assets/imagenes/arroz1.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Aceite girasol Pureza 900 Ml",
+      "price": 1856,
+      "imageUrl": "assets/imagenes/aceite1.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Sal fina Celusal 500 Gr",
+      "price": 1254,
+      "imageUrl": "assets/imagenes/salFina1.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Fideos Lucchetti Tallarin 500 Gr",
+      "price": 1029,
+      "imageUrl": "assets/imagenes/fideos1.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Harina 0000 Caserita 1 Kg",
+      "price": 1286,
+      "imageUrl": "assets/imagenes/harina1.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Yerba Mate Suave Playadito 1 Kg",
+      "price": 4066,
+      "imageUrl": "assets/imagenes/yerbaMate1.jpg"
+    },
+    {
+      "id": "7",
+      "name": "Bizcochos Clásicos 9 De Oro 200 Gr",
+      "price": 939,
+      "imageUrl": "assets/imagenes/bizcochos1.jpg"
+    },
+    {
+      "id": "8",
+      "name": "Leche La Serenísima Sachet 1 Lt",
+      "price": 1329,
+      "imageUrl": "assets/imagenes/leche1.jpg"
+    },
+    {
+      "id": "12",
+      "name": "Azúcar Mascabo Ledesma 800 Gr",
+      "price": 1855,
+      "imageUrl": "assets/imagenes/azucarMascabo1.jpg"
+    },
+    {
+      "id": "13",
+      "name": "Edulcorante Líquido Stevia 200 Ml",
+      "price": 3588,
+      "imageUrl": "assets/imagenes/edulcoranteChuker1.jpg"
+    },
+    {
+      "id": "15",
+      "name": "Galletitas Integral C/Chocolate 225 Gr",
+      "price": 1979,
+      "imageUrl": "assets/imagenes/galletitasCachafaz1.jpg"
+    },
+    {
+      "id": "16",
+      "name": "Galletitas Jamón Saladix 100 Gr",
+      "price": 1380,
+      "imageUrl": "assets/imagenes/saladixJamon1.jpg"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Juan",
+      "lastname": "Perez",
+      "email": "juanperez@gmail.com",
+      "password": "Juan1234",
+      "isVip": true
+    },
+    {
+      "id": "2",
+      "name": "Sofía",
+      "lastname": "Gonzalez",
+      "email": "sofigonzalez@gmail.com",
+      "password": "Sofi1234",
+      "isVip": true
+    },
+    {
+      "id": "3",
+      "name": "Tomas",
+      "lastname": "Armani",
+      "email": "tomiarmani@gmail.com",
+      "password": "Tomi1234",
+      "isVip": false
+    }
+  ]
+}

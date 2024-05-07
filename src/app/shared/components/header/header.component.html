@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+    <span class="title">Store Online</span>
+    <div class="spacer"></div>
+    <button 
+    class="header-login"
+    (click)="OpenLoginDialog()"
+    >
+        <mat-icon>
+            login
+        </mat-icon>
+    </button>
+    <button class="header-logout">
+        <mat-icon>
+            logout
+        </mat-icon>
+    </button>
+    <button  class="header-cart" (click)="OnToggleCart()">
+        <mat-icon>shopping_cart</mat-icon>
+    </button>
+</mat-toolbar>
+
+  

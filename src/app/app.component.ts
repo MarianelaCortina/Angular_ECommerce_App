@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ShoppingCartService } from './shared/components/services/shopping-cart.service';
 
 @Component({
   selector: 'app-root',

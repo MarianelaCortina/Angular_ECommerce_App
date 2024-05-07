@@ -1,0 +1,76 @@
+<!-- cart.component.html -->
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav [mode]="'side'" [opened]="isCartOpen" position="end" class="cart-sidenav">
+    <div class="sidenav-header">
+      <button mat-icon-button (click)="closeCart()">
+        <mat-icon color="primary">clear</mat-icon>
+      </button>
+      <div class="action-buttons-container">
+        <div><button matTooltip="Nuevo carrito" matTooltipPosition="above" matTooltipShowDelay="500"><mat-icon>create</mat-icon></button></div>
+        <div><button matTooltip="Eliminar carrito" matTooltipPosition="above" matTooltipShowDelay="500" (click)="clearCart()"><mat-icon>delete_forever</mat-icon></button></div>
+        <div><button matTooltip="Total a pagar" matTooltipPosition="above" matTooltipShowDelay="500" ><mat-icon>attach_money</mat-icon></button></div>
+      </div>
+    </div>
+    
+    <h2>Carrito de compras</h2>
+    
+    <div class="row">
+      <div *ngIf="cartItems.length === 0">
+        <p class="row-text">No hay productos en el carrito.</p>
+      </div>
+      <mat-card class="card" *ngFor="let item of cartItems">
+        <mat-card-header>
+          <img [src]="item.imageUrl" alt="Product Image" class="product-image">
+        </mat-card-header>
+        <mat-card-content>
+          <mat-card-subtitle>
+              {{ item.name }} 
+          </mat-card-subtitle>
+          <p>Precio: ${{ item.price | number: '1.2-2'}}</p>
+          <div class="buttons-container">
+            <div>
+              <button
+              style="background-color: white; 
+              color: blue; border-color: blue;
+              border-radius: 4px;"
+              (click)="addProductToCart(item)"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          
+            <div > {{ item.qty }} </div>
+            <div>
+              <button
+              style="background-color: white; 
+              color: blue; border-color: blue;
+              border-radius: 4px;"
+              (click)="removeItemProductFromCart(item)"
+              >
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="button-delete">
+            <button
+            (click)="deleteProductFromCart(item)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card-content>
+     
+    </mat-card>
+    
+    <div class="total-container">
+      <div>Total a pagar:</div>
+      <div>{{ totalAmount | currency }}</div>
+    </div>
+     
+  </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="main-content" [class.expand-content]="isCartOpen">
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<div class="mat-drawer-backdrop" *ngIf="isCartOpen" (click)="closeCart()"></div>

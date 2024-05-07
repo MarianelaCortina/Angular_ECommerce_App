@@ -1,0 +1,80 @@
+/* products.component.css */
+
+.dimmed-background {
+ background-color: rgba(0, 0, 0, 0.5);
+ z-index: -1000;
+ position: relative;
+
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  transition: background-color 0.3s;
+}
+
+.card {
+  width: calc(25% - 20px);
+  margin-bottom: 20px;
+  align-items: center;
+  margin: 10px; 
+  background-color: white; /* Fondo blanco por defecto */ 
+  position: relative;
+  z-index: 1;                                  
+}
+
+.product-image {
+  height: 200px; 
+  object-fit: cover; 
+  width: 100%; 
+}
+
+.mat-card-content {
+  margin-bottom: auto; 
+}
+
+.card mat-card-subtitle {
+  margin-top: 10px;
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+
+}
+
+.card p {
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  font-weight: bold;
+}
+
+.custom-button {
+  width: 100%;
+  background-color: white;
+  color: blue;
+  border-radius: 10px;
+  border-color: blue;
+  padding: 10px 20px;
+  line-height: 24px; 
+  display: flex;
+  align-items: center;
+}
+
+
+.custom-button mat-icon {
+  margin-right: 4px; 
+}
+
+.button-text {
+  margin-left: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.custom-button mat-icon,
+.button-text {
+  margin-top: 2px;
+}
+

@@ -1,0 +1,36 @@
+.title {
+    flex-grow: 1; 
+  }
+  
+  .spacer {
+    flex-grow: 1; 
+  }
+  
+  .header-cart, .header-login, .header-logout {
+    order: 2; 
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-cart:hover {
+    background-color: rgba(0, 0, 0, 0.1); 
+  }
+  
+  .header-cart mat-icon {
+    margin-right: 8px; 
+    color: white; 
+ 
+  }
+  
+  .header-login:hover, .header-logout:hover {
+    background-color: rgba(0, 0, 0, 0.1); 
+  }
+
+  .header-login, .header-logout mat-icon {
+    margin-right: 8px; 
+    color: white; 
+ 
+  }
