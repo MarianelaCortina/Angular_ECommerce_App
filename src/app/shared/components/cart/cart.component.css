@@ -181,3 +181,8 @@ div .action-buttons-container div button {
   font-weight: bold;
   color: blue;
 }
+
+.button-finalizar{
+ align-content: center;
+ margin-left: 25%;
+}

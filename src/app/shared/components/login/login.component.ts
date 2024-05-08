@@ -6,6 +6,7 @@ import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private shoppingCartService: ShoppingCartService,
     private router: Router,
+    private snackBar: MatSnackBar 
  
   ) { 
     this.loginForm = this.formBuilder.group({
@@ -34,11 +36,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     
   }
-   
-  closeLoginPanel() {
-    this.loginService.closeLoginPanel();
-  }
-
+ 
   onSubmit(): void {
     if (this.loginForm.invalid) {
       return;
@@ -50,13 +48,17 @@ export class LoginComponent implements OnInit {
           // Usuario válido, navegar a la página principal u otra página
           console.log(data);
           this.router.navigate(['/products']);
-          // Cargar productos en el carrito después del inicio de sesión
           this.shoppingCartService.loadProducts(true).subscribe(products => {
             console.log(products);
           });
+           this.snackBar.open('¡Inicio de sesión exitoso!', 'Cerrar', {
+            duration: 3000, 
+          });
         } else {
-          // Usuario no encontrado o credenciales incorrectas
-          this.errorMessage = 'Email o contraseña incorrectos';
+          this.snackBar.open('Email o contraseña incorrectos', 'Cerrar', {
+            duration: 3000, 
+          });
+         
         }
       },
       error:() => {
@@ -65,5 +67,5 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
+ 
 }

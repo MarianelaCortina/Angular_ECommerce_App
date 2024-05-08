@@ -1,0 +1,77 @@
+h2 {
+  color: blue;
+  margin-left: 5%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Toal a pagar */
+.total-container, .total-amount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: blue;
+}
+
+/* Forma de pago */
+fieldset{
+    width: 20%;
+    margin-left: 20px;
+    
+}
+p,
+label { 
+  font:
+    1rem 'Verdana',
+    sans-serif;
+}
+
+input {
+  margin: 0.4rem;
+}
+
+/** Estilos de las cards del carrito **/
+
+.card {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+  margin-top: 20px;
+
+}
+
+.product-image{
+  height: auto;
+  object-fit: cover; 
+  width: 100%; 
+}
+
+.card mat-card-subtitle {
+  margin-top: 10px;
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+
+}
+
+.card p {
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  font-weight: bold;
+}
+
+.item-qty{
+  border: 1px solid blue ;
+  border-radius: 2px;
+  max-width: 50px;
+  margin-left: 35%;
+  margin-right: 25%; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

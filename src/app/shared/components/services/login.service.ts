@@ -34,6 +34,7 @@ export class LoginService {
       map(users => users.find(user => user.email === loginData.email && user.password === loginData.password) || null),
       tap(user => {
         if (user) {
+          localStorage.setItem('userId', user.id);
           this.isLoggedInSubject.next(true);
         }
       }),
@@ -48,13 +49,20 @@ export class LoginService {
     return this.isLoggedIn$;
   }
 
+  logOut(){
+    localStorage.removeItem('userId');
+    
+    this.isLoggedInSubject.next(false);
+}
 
   closeLoginPanel() {
     this.isLoginPanelOpenSubject.next(false);
   }
 
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.API_URL}/users`);
+   
+  }
 
 
- 
-  
 }

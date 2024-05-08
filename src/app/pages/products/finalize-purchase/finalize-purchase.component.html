@@ -1,0 +1,36 @@
+<h2>Detalle del carrito</h2>
+<div class="row">
+  <div class="card" *ngFor="let item of cartItems">
+    <mat-card-header>
+      <img [src]="item.imageUrl" alt="Product Image" class="product-image">
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-subtitle>
+          {{ item.name }} 
+      </mat-card-subtitle>
+      <p>Precio: ${{ item.price | number: '1.2-2'}}</p>
+      <div style="text-align: center;">
+        <div> {{ item.qty }} </div>
+      </div>
+    </mat-card-content>
+      
+  </div>
+</div>
+
+<div  class="total-container">Total a pagar:</div>
+<div class="total-amount">{{ totalAmount | currency }}
+</div>
+
+<fieldset>
+    <legend>Forma de pago:</legend>
+  
+    <div>
+      <input type="checkbox" id="scales" name="scales" checked />
+      <label for="scales">Efectivo</label>
+    </div>
+  
+    <div>
+      <input type="checkbox" id="horns" name="horns" />
+      <label for="horns">Tarjeta</label>
+    </div>
+</fieldset>

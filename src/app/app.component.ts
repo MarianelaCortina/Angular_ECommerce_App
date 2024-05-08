@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ShoppingCartService } from './shared/components/services/shopping-cart.service';
+import { Component, HostListener } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,10 @@ import { ShoppingCartService } from './shared/components/services/shopping-cart.
 export class AppComponent {
   title = 'angular-challenge-app';
 
+  @HostListener('window:beforeunload', ['$event'])
+  beforeUnloadHander(event: Event) {
+    localStorage.clear(); // Limpia el localStorage cuando la página se está recargando o cerrando
+  }
   
  
 

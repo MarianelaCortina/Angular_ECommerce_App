@@ -16,7 +16,8 @@ export class ProductsComponent implements OnDestroy {
 
 
   product!: Product;
-  products!: Product[];
+  products: Product[] = [];
+  listaproductos: any [] = []
   isCartOpen: boolean = false;
   cartSubscription!: Subscription;
 
@@ -45,11 +46,11 @@ export class ProductsComponent implements OnDestroy {
       if (loggedIn) {
         console.log('Estado del usuario', loggedIn)
         this.shoppingCartService.addToCart(product);
-        console.log('Prodcuto elegido', product);
-        
-      // Añade el producto al array de productos
-      this.products.push(product);
-      console.log('Producto agregado a la lista de productos', product);
+         console.log('Prodcuto elegido', product); 
+        this.listaproductos.push(product);
+         console.log('Productos', this.listaproductos)
+      
+      
       } else {
         console.log('Error: usuario no ha iniciado sesión');
         

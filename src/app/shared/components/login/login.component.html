@@ -1,20 +1,26 @@
 <!-- login.component.html -->
-<h2 >Iniciar Sesión</h2>
-<div >
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" autocomplete="off">
-      <mat-icon>mail</mat-icon>
-    </mat-form-field>
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+  <mat-icon class="close-icon" color="primary">close</mat-icon>
+</button>
+<div class="container-login">
+  <h2>Iniciar Sesión</h2>
+  <div class="form-content">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label class="email-content">Email</mat-label>
+        <input matInput formControlName="email" autocomplete="off">
+      </mat-form-field>
 
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Contraseña</mat-label>
-      <input matInput formControlName="password" autocomplete="off" type="password">
-    </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label class="pass-content">Contraseña</mat-label>
+        <input matInput formControlName="password" autocomplete="off" type="password">
+      </mat-form-field>
 
-    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-    <button color="primary" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
-    <button  type="button" >Cancelar</button>
-  </form>
+      <div class="row">
+      <!--   <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div> -->
+        <button color="primary" type="submit" [disabled]="loginForm.invalid" class="button-ingresar">Ingresar</button>
+        <button  type="button" class="button-cancelar" [mat-dialog-close]="true">Cancelar</button>
+      </div>
+    </form>
+  </div>
 </div>

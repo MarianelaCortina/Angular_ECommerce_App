@@ -13,6 +13,16 @@
     </div>
     
     <h2>Carrito de compras</h2>
+
+    
+    <div *ngIf="currentUser && currentUser.isVip">
+      <p>Eres un usuario VIP.</p>
+    </div>
+    <div *ngIf="currentUser && !currentUser.isVip">
+      <p>No eres un usuario VIP.</p>
+    </div>
+    
+    
     
     <div class="row">
       <div *ngIf="cartItems.length === 0">
@@ -39,7 +49,7 @@
               </button>
             </div>
           
-            <div > {{ item.qty }} </div>
+            <div> {{ item.qty }} </div>
             <div>
               <button
               style="background-color: white; 
@@ -59,12 +69,20 @@
             </button>
           </div>
         </mat-card-content>
-     
+    
     </mat-card>
     
     <div class="total-container">
       <div>Total a pagar:</div>
       <div>{{ totalAmount | currency }}</div>
+    </div>
+    <div class="button-finalizar">
+      <button
+      mat-flat-button color="primary"
+      (click)="onFinalizePurchase()"
+      >
+        Finalizar compra
+      </button>
     </div>
      
   </div>

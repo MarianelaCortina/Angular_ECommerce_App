@@ -7,6 +7,7 @@ import { ShoppingCart } from '../interfaces/shopping-cart';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from './login.service';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,9 @@ export class ShoppingCartService {
 
   
   cartItems: Product[] = [];
+  listproducts: any [] = [];
+  currentUser: User | null = null;
+  total: number = 0;
 
   private isCartOpenSubject = new BehaviorSubject<boolean>(false);
   private totalSubject = new BehaviorSubject<number>(0);
@@ -52,26 +56,22 @@ export class ShoppingCartService {
     this.isCartOpenSubject.next(false);
   }
 
-  clearCart(): void {
-    this.cartItems = [];
-    this.cartItems$.next([]);
-    this.totalSubject.next(0); 
-    this.quantitySubject.next(0); 
-    
-  }
-
   addToCart(product: Product) {
-    // Agrega el producto al carrito solo si está cargado
-    if (this.cartItems.length > 0) {
+    // Agrega el producto al carrito y si ya exise en el carrito le aumenta la cantidad en 1
       const isProductInCart = this.cartItems.find(({ id }) => id === product.id);
       if (isProductInCart) {
         isProductInCart.qty += 1;
       } else {
         this.cartItems.push({ ...product, qty: 1 });
       }
-      this.cartItems$.next(this.cartItems);
-    }
-  }
+      console.log('cartItems del servicio add', this.cartItems)
+      this.cartItems$.next(this.cartItems); 
+}
+
+getProductCart(){
+  return this.cartItems
+  
+}
 
 
   removeItemFromCart(product: Product) {
@@ -99,11 +99,60 @@ export class ShoppingCartService {
     this.quantitySubject.next(quantity);
   }
 
-  calcTotal(): number {
-    const total = this.cartItems.reduce((acc, prod) => acc += (prod.price * prod.qty), 0);
-    this.totalSubject.next(total);
-    return total;
+  registerVipPurchase(product: Product): void {
+    if (this.currentUser && this.currentUser.isVip) {
+      if (!this.currentUser.vipProducts) {
+        this.currentUser.vipProducts = [];
+      }
+      this.currentUser.vipProducts.push(product);
+    }
   }
+
+  calculateDiscountAndBonification(currentUser: User | null): number {
+    const totalQuantity = this.cartItems.reduce((acc, prod) => acc + prod.qty, 0);
+    const totalAmount = this.calcTotal();
+    console.log(totalQuantity)
+    if (totalQuantity > 10) {
+      console.log('dentro del if > 10', currentUser)
+      if (currentUser && currentUser.isVip) {
+        console.log('dentro del if si vip')
+        // Usuario VIP: Bonificación del producto más barato y descuento general de $500
+        const minPriceProduct = this.cartItems.reduce((min, p) => p.price < min.price ? p : min, this.cartItems[0]);
+        const discountedAmount = totalAmount - 500;
+        minPriceProduct.qty -= 1; // Disminuir la cantidad del producto más barato
+        this.cartItems$.next(this.cartItems);
+        return discountedAmount;
+      } else {
+        // Usuario no VIP: Descuento de $100
+        return totalAmount - 100;
+      }
+    }
+    this.total = totalAmount
+    return totalAmount;
+  }
+  
+  getTotal(){
+    return this.total
+  }
+ 
+  
+  /* este calcula bien el total */
+   calcTotal(): number {
+    const subTotal = this.cartItems.reduce((acc, prod) => acc += (prod.price * prod.qty), 0);
+    
+    let descuento = 0;
+    const totalQuantity = this.cartItems.reduce((acc, prod) => acc += prod.qty, 0);
+
+    if (totalQuantity === 4) {
+        descuento = subTotal * 0.25; // Aplica un descuento del 25% si hay 4 unidades en total
+    }
+
+    const totalConDescuento = subTotal - descuento;
+    
+    this.totalSubject.next(totalConDescuento);
+    return totalConDescuento;
+} 
+
   
   loadProducts(loggedIn: boolean): Observable<Product> {
     // Verifica si el usuario está logueado antes de cargar los productos
@@ -115,10 +164,19 @@ export class ShoppingCartService {
       return of();
     }
   }
+
+  
+  clearCart(): void {
+    this.cartItems = [];
+    this.cartItems$.next([]);
+    this.totalSubject.next(0); 
+    this.quantitySubject.next(0); 
+    
+  }
   
   updateCartItems(products: Product[]): void {
-    this.cartItems = products; // Actualiza los elementos del carrito con los productos cargados
-    this.cartItems$.next(this.cartItems); // Notifica a los suscriptores sobre el cambio en los elementos del carrito
+    this.cartItems = products; 
+    this.cartItems$.next(this.cartItems); 
   }
 
 }

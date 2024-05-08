@@ -17,11 +17,7 @@ export class HeaderComponent {
     private shoppingCartService: ShoppingCartService,
     private loginService: LoginService,
     public dialog: MatDialog
-  ) {
-      /* this.loginService.isLoginPanelOpen$.subscribe(isOpen => {
-      this.isLoginPanelOpen = isOpen;
-    }); */
-  }
+  ) {}
 
   OnToggleCart() {
     this.shoppingCartService.toggleCart();
@@ -32,14 +28,16 @@ export class HeaderComponent {
 
   OpenLoginDialog() {
     this.dialog.open(LoginComponent, {
-      /* mwidth: '400px', */
+     
     });
     
   }
 
- /*  OpenLoginPanel() {
-    this.loginService.openLoginPanel();
-    console.log('abrir login')
-  } */
+  
+  onLogout(){
+    this.loginService.logOut()
+  }
+
+
   
 }
