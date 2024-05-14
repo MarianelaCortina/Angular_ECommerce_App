@@ -51,7 +51,6 @@ export class LoginService {
 
   logOut(){
     localStorage.removeItem('userId');
-    
     this.isLoggedInSubject.next(false);
 }
 
@@ -64,5 +63,6 @@ export class LoginService {
    
   }
 
+  
 
 }

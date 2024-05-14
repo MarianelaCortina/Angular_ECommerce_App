@@ -1,12 +1,11 @@
 /* shopping-cart.service.ts */
 
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Product } from 'src/app/pages/products/interfaces/product.interface';
 import { ShoppingCart } from '../interfaces/shopping-cart';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { LoginService } from './login.service';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -18,7 +17,6 @@ export class ShoppingCartService {
 
   constructor(
     private readonly http: HttpClient,
-    private loginService: LoginService
   
   ) { }
 
@@ -29,7 +27,7 @@ export class ShoppingCartService {
   total: number = 0;
 
   private isCartOpenSubject = new BehaviorSubject<boolean>(false);
-  private totalSubject = new BehaviorSubject<number>(0);
+  totalSubject = new BehaviorSubject<number>(0);
   private quantitySubject = new BehaviorSubject<number>(0);
   cartItems$ = new BehaviorSubject<Product[]>([]);
 
@@ -64,14 +62,13 @@ export class ShoppingCartService {
       } else {
         this.cartItems.push({ ...product, qty: 1 });
       }
-      console.log('cartItems del servicio add', this.cartItems)
       this.cartItems$.next(this.cartItems); 
 }
 
-getProductCart(){
-  return this.cartItems
-  
-}
+  getProductCart(){
+    return this.cartItems
+    
+  }
 
 
   removeItemFromCart(product: Product) {
@@ -111,7 +108,7 @@ getProductCart(){
   calculateDiscountAndBonification(currentUser: User | null): number {
     const totalQuantity = this.cartItems.reduce((acc, prod) => acc + prod.qty, 0);
     const totalAmount = this.calcTotal();
-    console.log(totalQuantity)
+  
     if (totalQuantity > 10) {
       console.log('dentro del if > 10', currentUser)
       if (currentUser && currentUser.isVip) {
@@ -128,12 +125,12 @@ getProductCart(){
       }
     }
     this.total = totalAmount
+    this.totalSubject.next(totalAmount)
+
     return totalAmount;
+    
   }
   
-  getTotal(){
-    return this.total
-  }
  
   
   /* este calcula bien el total */

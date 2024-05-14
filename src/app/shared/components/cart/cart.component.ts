@@ -1,10 +1,9 @@
 /* cart.component.ts */
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/pages/products/interfaces/product.interface';
 import { ProductsService } from 'src/app/pages/products/services/products.service';
-import { ShoppingCart } from '../interfaces/shopping-cart';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { User } from '../interfaces/user';
@@ -41,15 +40,14 @@ export class CartComponent implements OnInit, OnDestroy {
       console.log('Estado del carrito actualizado:', this.isCartOpen);
       if (open) {
         this.shoppingCartService.getProductCart()
-        console.log(this.shoppingCartService.getProductCart())
         this.loadProducts();
-        console.log('load del cart', this.loadProducts())
         this.currentUser = this.getCurrentUser();
       }
     }); 
     this.shoppingCartService.cartItems$.subscribe(items => {
       this.cartItems = items;
       this.calculateTotal();
+    
     })
 
     
@@ -68,7 +66,6 @@ export class CartComponent implements OnInit, OnDestroy {
 
   /* Boton agregar un producto */
   addProductToCart(product: Product){
-    console.log('Agregando producto al carrito:', product);
     this.shoppingCartService.addToCart(product); 
   }
 
@@ -94,14 +91,13 @@ export class CartComponent implements OnInit, OnDestroy {
     this.shoppingCartService.clearCart();
   }
 
+ 
   getCurrentUser() {
     const userId = localStorage.getItem('userId'); 
-    console.log(userId)
     if (userId) {
       this.loginService.getUsers().subscribe(users => {
         this.currentUser = users.find(user => user.id === userId) || null;
         if (this.currentUser) {
-          console.log('this.current', this.currentUser)
           if (this.currentUser.isVip) {
             console.log('Usuario VIP');
           } else {

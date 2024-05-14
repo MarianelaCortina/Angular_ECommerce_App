@@ -10,9 +10,7 @@ import { ShoppingCartService } from 'src/app/shared/components/services/shopping
 export class FinalizePurchaseComponent implements OnInit {
 
   cartItems: Product[] = [];
-  totalAmount: number = 0;
-
-
+  totalPrice: number = 0;
 
   constructor(
     public shoppingCartService: ShoppingCartService,
@@ -21,12 +19,14 @@ export class FinalizePurchaseComponent implements OnInit {
   ngOnInit(): void {
     this.shoppingCartService.cartItems$.subscribe(items => {
       this.cartItems = items;
-      console.log('Finalizar component ', this.cartItems)
-      this.totalAmount = this.shoppingCartService.getTotal();
-      
+      this.shoppingCartService.totalSubject.subscribe(totalPrice => {
+        this.totalPrice = totalPrice;
+        console.log('finalizar totalPrice', this.totalPrice)
+      });
+   
     })
+   
   }
-
 
 
 }

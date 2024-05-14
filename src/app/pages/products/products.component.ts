@@ -1,11 +1,12 @@
 /* products.component.ts */
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ProductsService } from './services/products.service';
 import { Product } from './interfaces/product.interface';
 import { tap } from 'rxjs/operators';
 import { ShoppingCartService } from 'src/app/shared/components/services/shopping-cart.service';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/shared/components/services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products',
@@ -24,17 +25,16 @@ export class ProductsComponent implements OnDestroy {
   constructor(
     private productSvc: ProductsService, 
     public shoppingCartService: ShoppingCartService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
   ){}
 
    ngOnInit(): void {
     this.productSvc.getProducts()
       .pipe(
-         tap((products: Product[]) => this.products = products)
-         /* tap( res => console.log( res )) */
+        tap((products: Product[]) => this.products = products)
       )
       .subscribe();
-
       this.cartSubscription = this.shoppingCartService.isCartOpen$.subscribe(isOpen => {
         this.isCartOpen = isOpen;
       });
@@ -44,15 +44,13 @@ export class ProductsComponent implements OnDestroy {
   addProductToCart(product: Product) {
     this.loginService.isLoggedIn().subscribe((loggedIn: boolean) => {
       if (loggedIn) {
-        console.log('Estado del usuario', loggedIn)
         this.shoppingCartService.addToCart(product);
-         console.log('Prodcuto elegido', product); 
         this.listaproductos.push(product);
-         console.log('Productos', this.listaproductos)
-      
       
       } else {
-        console.log('Error: usuario no ha iniciado sesión');
+        this.snackBar.open('Primero debes iniciar sesión', 'Cerrar', {
+          duration: 3000, 
+        });
         
       }
     });

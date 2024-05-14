@@ -3,6 +3,7 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 import { LoginService } from '../services/login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,8 @@ export class HeaderComponent {
   constructor(
     private shoppingCartService: ShoppingCartService,
     private loginService: LoginService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   OnToggleCart() {
@@ -35,7 +37,10 @@ export class HeaderComponent {
 
   
   onLogout(){
-    this.loginService.logOut()
+    this.loginService.logOut();
+    this.snackBar.open('Ha cerrado sesión', 'Cerrar', {
+      duration: 3000, 
+    });
   }
 
 
