@@ -1,4 +1,4 @@
-La aplicacion fue realizada en Angular version 16
+La aplicacion fue realizada en Angular.
 
 ![image](https://github.com/MarianelaCortina/Angular_ECommerce_App/assets/73797352/fc2c789a-7016-4c40-be9f-67356b1e72c9)
 
