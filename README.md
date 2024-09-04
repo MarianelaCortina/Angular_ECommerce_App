@@ -3,7 +3,7 @@ La aplicacion fue realizada en Angular.
 ![image](https://github.com/MarianelaCortina/Angular_ECommerce_App/assets/73797352/fc2c789a-7016-4c40-be9f-67356b1e72c9)
 
 Para instalar Angular CLI:
-ng install -g @angular/cli@16.2.0
+ng install -g @angular/cli
 
 ------------------
 Para crear un Mock
